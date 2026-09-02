@@ -1,31 +1,22 @@
 import React from 'react';
-import { Calendar, MapPin, CheckCircle2, Terminal } from 'lucide-react';
+import { Calendar, MapPin, CheckCircle2 } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolio';
 
-interface ExperienceProps {
-  darkMode: boolean;
-}
-
-export const Experience: React.FC<ExperienceProps> = ({ darkMode }) => {
+export const Experience: React.FC = () => {
   return (
-    <section id="experience" className={`py-14 sm:py-20 border-t transition-colors ${
-      darkMode ? 'border-slate-800/80 bg-slate-950' : 'border-slate-200 bg-white'
-    }`}>
+    <section id="experience" className="py-16 sm:py-20 bg-white border-b border-slate-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-left space-y-1.5 mb-10">
-          <div className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-cyan-400">
-            <Terminal className="w-3.5 h-3.5" />
-            <span>02. Work Experience</span>
-          </div>
-          <h2 className={`text-2xl sm:text-3xl font-extrabold tracking-tight ${
-            darkMode ? 'text-white' : 'text-slate-900'
-          }`}>
-            Professional Experience
+        <div className="text-left space-y-2 mb-10">
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+            Experience
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            Work Experience
           </h2>
-          <p className={`text-sm ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-            Real-world backend engineering and system implementation in production environments.
+          <p className="text-base text-slate-600 max-w-2xl">
+            Hands-on software development and backend systems engineering in production environments.
           </p>
         </div>
 
@@ -34,62 +25,48 @@ export const Experience: React.FC<ExperienceProps> = ({ darkMode }) => {
           {PORTFOLIO_DATA.experience.map((exp) => (
             <div
               key={exp.id}
-              className={`p-6 sm:p-8 rounded-2xl border text-left transition-all ${
-                darkMode
-                  ? 'bg-slate-900/80 border-slate-800 hover:border-slate-700 shadow-md'
-                  : 'bg-slate-50/70 border-slate-200 hover:border-slate-300 shadow-sm'
-              }`}
+              className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-sm text-left hover:border-slate-300 transition-all"
             >
               
               {/* Card Header: Role, Company, Period */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-800/60">
-                <div className="space-y-1">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-100">
+                <div className="space-y-1.5">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200">
                       {exp.role}
                     </span>
-                    <span className={`text-xs font-mono ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                    <span className="text-xs text-slate-500 font-medium">
                       • {exp.project}
                     </span>
                   </div>
-                  <h3 className={`text-xl sm:text-2xl font-bold tracking-tight ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
                     {exp.company}
                   </h3>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-400">
-                  <div className={`flex items-center gap-1.5 px-3 py-1 rounded-lg border ${
-                    darkMode ? 'bg-slate-950 border-slate-800' : 'bg-white border-slate-200 text-slate-700'
-                  }`}>
-                    <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+                <div className="flex flex-wrap items-center gap-2.5 text-xs text-slate-600">
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50">
+                    <Calendar className="w-3.5 h-3.5 text-blue-600" />
                     <span>{exp.period}</span>
                   </div>
-                  <div className={`flex items-center gap-1.5 px-3 py-1 rounded-lg border ${
-                    darkMode ? 'bg-slate-950 border-slate-800' : 'bg-white border-slate-200 text-slate-700'
-                  }`}>
-                    <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50">
+                    <MapPin className="w-3.5 h-3.5 text-blue-600" />
                     <span>{exp.location}</span>
                   </div>
                 </div>
               </div>
 
-              {/* Quick Deliverable Metrics Grid */}
-              <div className="my-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+              {/* Deliverable Metrics Grid */}
+              <div className="my-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
                 {exp.metrics.map((metric) => (
                   <div
                     key={metric.label}
-                    className={`p-3 rounded-xl border text-center transition-colors ${
-                      darkMode
-                        ? 'bg-slate-950/70 border-slate-800/90'
-                        : 'bg-white border-slate-200'
-                    }`}
+                    className="p-3 rounded-xl border border-slate-200 bg-slate-50 text-center"
                   >
-                    <span className="block text-xl font-extrabold font-mono text-cyan-400 tracking-tight">
+                    <span className="block text-xl font-extrabold text-blue-600 tracking-tight">
                       {metric.value}
                     </span>
-                    <span className={`block text-[10px] font-mono font-medium uppercase tracking-wider mt-0.5 ${
-                      darkMode ? 'text-slate-400' : 'text-slate-600'
-                    }`}>
+                    <span className="block text-[11px] font-medium uppercase tracking-wider text-slate-500 mt-0.5">
                       {metric.label}
                     </span>
                   </div>
@@ -97,20 +74,16 @@ export const Experience: React.FC<ExperienceProps> = ({ darkMode }) => {
               </div>
 
               {/* Responsibilities & Achievements */}
-              <div className="space-y-2.5 pt-1">
-                <span className={`block text-xs font-mono uppercase tracking-wider font-semibold ${
-                  darkMode ? 'text-slate-400' : 'text-slate-500'
-                }`}>
+              <div className="space-y-3 pt-1">
+                <span className="block text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Key Backend Deliverables & Accomplishments:
                 </span>
                 
-                <ul className="space-y-2">
+                <ul className="space-y-2.5">
                   {exp.highlights.map((point, index) => (
                     <li key={index} className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
-                      <span className={`text-sm leading-relaxed ${
-                        darkMode ? 'text-slate-300' : 'text-slate-700'
-                      }`}>
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-sm sm:text-base text-slate-700 leading-relaxed">
                         {point}
                       </span>
                     </li>
@@ -119,20 +92,14 @@ export const Experience: React.FC<ExperienceProps> = ({ darkMode }) => {
               </div>
 
               {/* Technologies Used Pills */}
-              <div className="mt-5 pt-4 border-t border-slate-800/50 flex flex-wrap items-center gap-1.5">
-                <span className={`text-xs font-mono font-semibold uppercase tracking-wider mr-1.5 ${
-                  darkMode ? 'text-slate-400' : 'text-slate-500'
-                }`}>
+              <div className="mt-6 pt-4 border-t border-slate-100 flex flex-wrap items-center gap-2">
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 mr-1">
                   Tech Stack:
                 </span>
                 {exp.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className={`px-2 py-0.5 rounded text-xs font-mono font-medium border ${
-                      darkMode
-                        ? 'bg-slate-950 text-slate-300 border-slate-800'
-                        : 'bg-slate-100 text-slate-800 border-slate-200'
-                    }`}
+                    className="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200"
                   >
                     {tech}
                   </span>
@@ -147,3 +114,4 @@ export const Experience: React.FC<ExperienceProps> = ({ darkMode }) => {
     </section>
   );
 };
+

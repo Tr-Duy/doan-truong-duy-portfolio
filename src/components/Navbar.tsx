@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon, Download, ExternalLink } from 'lucide-react';
+import { Menu, X, Download } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
 import { PORTFOLIO_DATA } from '../data/portfolio';
-
-interface NavbarProps {
-  darkMode: boolean;
-  setDarkMode: (val: boolean | ((prev: boolean) => boolean)) => void;
-}
 
 const NAV_LINKS = [
   { name: 'About', href: '#about' },
@@ -17,7 +12,7 @@ const NAV_LINKS = [
   { name: 'Contact', href: '#contact' },
 ];
 
-export const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
+export const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
@@ -63,12 +58,8 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
     <header
       className={`sticky top-0 z-50 transition-all duration-200 ${
         scrolled
-          ? darkMode
-            ? 'bg-slate-950/95 backdrop-blur-md border-b border-slate-800/80 shadow-md shadow-black/20'
-            : 'bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-sm'
-          : darkMode
-          ? 'bg-slate-950/80 backdrop-blur-sm border-b border-slate-800/40'
-          : 'bg-white/80 backdrop-blur-sm border-b border-slate-200/40'
+          ? 'bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs'
+          : 'bg-white/80 backdrop-blur-sm border-b border-slate-200/60'
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -77,16 +68,16 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
         <a
           href="#hero"
           onClick={(e) => handleNavClick(e, '#hero')}
-          className="flex items-center gap-2.5 focus:outline-none group"
+          className="flex items-center gap-3 focus:outline-none group"
         >
-          <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 font-mono font-bold text-sm group-hover:border-cyan-500/40 transition-colors">
+          <div className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-xs group-hover:bg-blue-700 transition-colors">
             TD
           </div>
           <div className="flex flex-col text-left">
-            <span className={`font-bold text-sm tracking-tight leading-tight ${darkMode ? 'text-slate-100' : 'text-slate-900'}`}>
+            <span className="font-bold text-sm text-slate-900 tracking-tight leading-tight group-hover:text-blue-600 transition-colors">
               {PORTFOLIO_DATA.personalInfo.name}
             </span>
-            <span className="text-[11px] font-mono text-cyan-500 font-medium leading-tight">
+            <span className="text-xs text-slate-500 font-medium leading-tight">
               {PORTFOLIO_DATA.personalInfo.title}
             </span>
           </div>
@@ -101,13 +92,9 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                   isActive
-                    ? darkMode
-                      ? 'text-cyan-400 bg-cyan-500/10 font-semibold'
-                      : 'text-cyan-700 bg-cyan-50 font-semibold'
-                    : darkMode
-                    ? 'text-slate-400 hover:text-slate-100 hover:bg-slate-900'
+                    ? 'text-blue-600 bg-blue-50 font-semibold'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >
@@ -117,18 +104,14 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
           })}
         </nav>
 
-        {/* Desktop Action Controls: Socials + Theme + CV */}
+        {/* Desktop Action Controls: Socials + Download CV */}
         <div className="hidden md:flex items-center gap-2.5">
           {/* GitHub link */}
           <a
             href={PORTFOLIO_DATA.personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
-            className={`p-2 rounded-lg transition-colors border ${
-              darkMode
-                ? 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-100 hover:border-slate-700'
-                : 'bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-900 hover:border-slate-300'
-            }`}
+            className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 transition-colors"
             aria-label="GitHub Profile"
             title="GitHub Profile"
           >
@@ -140,37 +123,18 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
             href={PORTFOLIO_DATA.personalInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className={`p-2 rounded-lg transition-colors border ${
-              darkMode
-                ? 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-cyan-400 hover:border-slate-700'
-                : 'bg-slate-50 border-slate-200 text-slate-600 hover:text-cyan-600 hover:border-slate-300'
-            }`}
+            className="p-2 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-blue-50 border border-slate-200 transition-colors"
             aria-label="LinkedIn Profile"
             title="LinkedIn Profile"
           >
             <LinkedinIcon className="w-4 h-4" />
           </a>
 
-          {/* Theme Toggle */}
-          <button
-            type="button"
-            onClick={() => setDarkMode(prev => !prev)}
-            className={`p-2 rounded-lg transition-colors border ${
-              darkMode
-                ? 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-amber-400 hover:border-slate-700'
-                : 'bg-slate-50 border-slate-200 text-slate-600 hover:text-amber-600 hover:border-slate-300'
-            }`}
-            aria-label={`Switch to ${darkMode ? 'light' : 'dark'} mode`}
-            title={`Switch to ${darkMode ? 'light' : 'dark'} mode`}
-          >
-            {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </button>
-
           {/* Download CV Button */}
           <a
             href={PORTFOLIO_DATA.personalInfo.cvPath}
             download="CV-Doan-Truong-Duy.pdf"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-950 bg-cyan-400 hover:bg-cyan-300 transition-colors shadow-sm active:scale-95 ml-1"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-xs active:scale-95 ml-1"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Download CV</span>
@@ -179,23 +143,19 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
 
         {/* Mobile Menu Toggle Button */}
         <div className="flex md:hidden items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setDarkMode(prev => !prev)}
-            className={`p-2 rounded-lg transition-colors border ${
-              darkMode ? 'bg-slate-900 border-slate-800 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'
-            }`}
-            aria-label={`Switch to ${darkMode ? 'light' : 'dark'} mode`}
+          <a
+            href={PORTFOLIO_DATA.personalInfo.cvPath}
+            download="CV-Doan-Truong-Duy.pdf"
+            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors"
           >
-            {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </button>
+            <Download className="w-3.5 h-3.5" />
+            <span>CV</span>
+          </a>
 
           <button
             type="button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`p-2 rounded-lg border transition-colors ${
-              darkMode ? 'bg-slate-900 border-slate-800 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'
-            }`}
+            className="p-2 rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-colors"
             aria-expanded={isMenuOpen}
             aria-label="Toggle menu"
           >
@@ -206,10 +166,8 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
 
       {/* Mobile Slideout Menu */}
       {isMenuOpen && (
-        <div className={`md:hidden border-b animate-fade-in ${
-          darkMode ? 'bg-slate-950 border-slate-800' : 'bg-white border-slate-200'
-        }`}>
-          <div className="px-4 pt-2 pb-5 space-y-1.5">
+        <div className="md:hidden border-b border-slate-200 bg-white animate-fade-in shadow-lg">
+          <div className="px-4 pt-2 pb-5 space-y-1">
             {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.href.substring(1);
               return (
@@ -219,12 +177,8 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
                   onClick={(e) => handleNavClick(e, link.href)}
                   className={`block px-3.5 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                     isActive
-                      ? darkMode
-                        ? 'text-cyan-400 bg-cyan-500/10 font-semibold'
-                        : 'text-cyan-700 bg-cyan-50 font-semibold'
-                      : darkMode
-                      ? 'text-slate-300 hover:bg-slate-900'
-                      : 'text-slate-700 hover:bg-slate-100'
+                      ? 'text-blue-600 bg-blue-50 font-semibold'
+                      : 'text-slate-700 hover:bg-slate-50'
                   }`}
                 >
                   {link.name}
@@ -232,39 +186,33 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
               );
             })}
 
-            <div className="pt-4 mt-2 border-t border-slate-800/40 flex flex-col gap-2.5">
+            <div className="pt-3 mt-2 border-t border-slate-100 flex flex-col gap-2.5">
               <div className="flex items-center gap-2">
                 <a
                   href={PORTFOLIO_DATA.personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg border text-xs font-mono ${
-                    darkMode ? 'bg-slate-900 border-slate-800 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'
-                  }`}
+                  className="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium"
                 >
                   <GithubIcon className="w-4 h-4" />
                   <span>GitHub</span>
-                  <ExternalLink className="w-3 h-3 text-slate-500" />
                 </a>
 
                 <a
                   href={PORTFOLIO_DATA.personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg border text-xs font-mono ${
-                    darkMode ? 'bg-slate-900 border-slate-800 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'
-                  }`}
+                  className="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium"
                 >
                   <LinkedinIcon className="w-4 h-4" />
                   <span>LinkedIn</span>
-                  <ExternalLink className="w-3 h-3 text-slate-500" />
                 </a>
               </div>
 
               <a
                 href={PORTFOLIO_DATA.personalInfo.cvPath}
                 download="CV-Doan-Truong-Duy.pdf"
-                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-950 bg-cyan-400 hover:bg-cyan-300 transition-colors shadow-sm"
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-xs"
               >
                 <Download className="w-4 h-4" />
                 <span>Download CV (PDF)</span>
@@ -276,3 +224,4 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
     </header>
   );
 };
+

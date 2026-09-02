@@ -1,67 +1,55 @@
 import React from 'react';
-import { ArrowUp, Server } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolio';
 
-interface FooterProps {
-  darkMode: boolean;
-}
-
-export const Footer: React.FC<FooterProps> = ({ darkMode }) => {
+export const Footer: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer className={`py-12 border-t transition-colors ${
-      darkMode ? 'border-slate-800/80 bg-slate-950' : 'border-slate-200 bg-white'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="py-12 bg-white border-t border-slate-200">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           
           {/* Brand & Title */}
           <div className="flex items-center gap-3 text-left">
-            <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
-              <Server className="w-4 h-4" />
+            <div className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-xs">
+              TD
             </div>
             <div>
-              <span className={`block font-bold text-base ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+              <span className="block font-bold text-sm text-slate-900">
                 {PORTFOLIO_DATA.personalInfo.name}
               </span>
-              <span className="text-xs font-mono text-cyan-400">
+              <span className="text-xs text-slate-500 font-medium">
                 {PORTFOLIO_DATA.personalInfo.title}
               </span>
             </div>
           </div>
 
           {/* Social Links */}
-          <div className="flex items-center gap-6 text-sm font-mono">
+          <div className="flex items-center gap-6 text-sm font-medium">
             <a
               href={PORTFOLIO_DATA.personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className={`hover:text-cyan-400 transition-colors ${
-                darkMode ? 'text-slate-400' : 'text-slate-600'
-              }`}
+              className="text-slate-600 hover:text-slate-900 transition-colors"
             >
               GitHub
             </a>
-            <span className="text-slate-700">•</span>
+            <span className="text-slate-300">•</span>
             <a
               href={PORTFOLIO_DATA.personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className={`hover:text-cyan-400 transition-colors ${
-                darkMode ? 'text-slate-400' : 'text-slate-600'
-              }`}
+              className="text-slate-600 hover:text-blue-600 transition-colors"
             >
               LinkedIn
             </a>
-            <span className="text-slate-700">•</span>
+            <span className="text-slate-300">•</span>
             <a
               href={`mailto:${PORTFOLIO_DATA.personalInfo.email}`}
-              className={`hover:text-cyan-400 transition-colors ${
-                darkMode ? 'text-slate-400' : 'text-slate-600'
-              }`}
+              className="text-slate-600 hover:text-blue-600 transition-colors"
             >
               Email
             </a>
@@ -69,18 +57,14 @@ export const Footer: React.FC<FooterProps> = ({ darkMode }) => {
 
           {/* Copyright & Scroll Back to Top */}
           <div className="flex items-center gap-4">
-            <p className={`text-xs font-mono ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+            <p className="text-xs text-slate-500">
               © 2026 {PORTFOLIO_DATA.personalInfo.name}. All rights reserved.
             </p>
 
             <button
               type="button"
               onClick={scrollToTop}
-              className={`p-2 rounded-lg border transition-colors ${
-                darkMode
-                  ? 'bg-slate-900 border-slate-800 text-slate-400 hover:text-cyan-400 hover:border-cyan-500/40'
-                  : 'bg-slate-100 border-slate-200 text-slate-600 hover:text-cyan-600'
-              }`}
+              className="p-2 rounded-lg border border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors"
               aria-label="Back to top"
             >
               <ArrowUp className="w-4 h-4" />
@@ -92,3 +76,4 @@ export const Footer: React.FC<FooterProps> = ({ darkMode }) => {
     </footer>
   );
 };
+
