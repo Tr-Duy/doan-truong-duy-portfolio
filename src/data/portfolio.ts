@@ -21,6 +21,7 @@ export interface ProjectItem {
   role: string;
   period: string;
   githubUrl: string;
+  demoUrl?: string;
   description: string;
   longDescription?: string;
   highlights: string[];
@@ -39,13 +40,15 @@ export interface ProjectItem {
 
 export interface SkillCategory {
   category: string;
-  skills: { name: string; isPrimaryBackend?: boolean }[];
+  description?: string;
+  skills: { name: string; isPrimary?: boolean }[];
 }
 
 export interface EducationItem {
   institution: string;
   degree: string;
   period: string;
+  status: string;
   gpa: string;
   awards: string[];
 }
@@ -61,7 +64,8 @@ export const PORTFOLIO_DATA = {
     name: "Đoàn Trường Duy",
     shortName: "Duy",
     title: "Java Backend Developer",
-    targetPositions: "Java Backend Intern / Fresher",
+    subtitle: "Final-year Information Technology student • 6 months Backend Developer Intern experience",
+    targetPositions: "Internship / Fresher / Junior Software Engineer",
     location: "Ho Chi Minh City, Vietnam",
     email: "doantruongduy8@gmail.com",
     phone: "0332090744",
@@ -70,24 +74,48 @@ export const PORTFOLIO_DATA = {
     linkedin: "https://linkedin.com/in/truongduy-dev/",
     cvPath: "/CV-Doan-Truong-Duy.pdf",
     avatarPath: "/avatar.jpg",
-    bio: "Final-year Information Technology student at Saigon Technology University focused on building reliable, scalable backend systems with Java and Spring Boot. Hands-on experience developing RESTful APIs, Spring Security authentication, database design, API integration, and JUnit unit testing.",
-    objective: "Final-year Information Technology student with hands-on experience building RESTful APIs using Java, Spring Boot, Spring Data JPA, and MySQL. Experienced in authentication, business logic, database design, and API integration. Seeking a Java Backend Intern/Fresher position to contribute to real-world backend systems."
+    bio: "Final-year Information Technology student at Saigon Technology University specializing in Java Backend Development. Hands-on experience developing 90+ production RESTful APIs, Spring Security authentication, MySQL database design, JPA/Hibernate, and JUnit 5 automated testing.",
+    objective: "Final-year IT student with practical experience building RESTful APIs using Java, Spring Boot, Spring Data JPA, and MySQL. Experienced in JWT authentication, database design, API integrations, and automated testing. Seeking a Java Backend Intern / Fresher / Junior position to contribute to real-world software systems."
   },
 
-  heroHighlights: [
-    "Java 21",
-    "Spring Boot 4",
-    "Spring Security",
-    "RESTful API",
-    "MySQL",
-    "JUnit 5"
+  quickFacts: [
+    {
+      label: "Experience",
+      value: "6+ Months",
+      detail: "Backend Developer Intern (YOOT)"
+    },
+    {
+      label: "Primary Stack",
+      value: "Java & Spring Boot",
+      detail: "REST API, MySQL, JPA"
+    },
+    {
+      label: "Education",
+      value: "Final-year Student",
+      detail: "Saigon Technology University"
+    },
+    {
+      label: "Location",
+      value: "HCMC, Vietnam",
+      detail: "Open to Intern / Fresher / Junior"
+    }
   ],
 
-  aboutCard: {
+  heroHighlights: [
+    "Java",
+    "Spring Boot",
+    "REST API",
+    "MySQL",
+    "JPA / Hibernate",
+    "Spring Security"
+  ],
+
+  aboutSummary: {
     location: "Ho Chi Minh City, Vietnam",
     education: "Saigon Technology University (STU)",
-    focus: "Java Backend Development",
-    careerGoal: "Java Backend Intern / Fresher"
+    degree: "Bachelor of Information Technology (2022 - 2026)",
+    focus: "Java Backend & API Engineering",
+    careerGoal: "Internship / Fresher / Junior Backend Engineer"
   },
 
   experience: [
@@ -101,9 +129,9 @@ export const PORTFOLIO_DATA = {
       highlights: [
         "Developed backend services and 90+ RESTful API endpoints using Java 21, Spring Boot 4, Spring Data JPA, and MySQL with layered architecture across 17 JPA entities and 16 business controllers.",
         "Built RESTful APIs for student, class, enrollment, attendance, learning, billing, payment, promotion, reporting, and parent-portal workflows.",
-        "Implemented JWT authentication and role-based authorization for 4 user roles, securing 70+ methods with Spring Security and handling transactional workflows using @Transactional and BigDecimal.",
+        "Implemented JWT authentication and role-based authorization (RBAC) for 4 user roles, securing 70+ methods with Spring Security and managing transactional workflows using @Transactional and BigDecimal.",
         "Implemented pagination, dynamic filtering, standardized API responses, global exception handling, and API documentation with Swagger/OpenAPI.",
-        "Added 86 JUnit 5/Mockito test methods across 15 service test classes."
+        "Implemented 86 JUnit 5 / Mockito unit test methods across 15 service test classes to ensure system stability."
       ],
       metrics: [
         { label: "REST APIs", value: "90+" },
@@ -122,7 +150,8 @@ export const PORTFOLIO_DATA = {
         "MySQL",
         "JUnit 5",
         "Mockito",
-        "Swagger/OpenAPI"
+        "Swagger/OpenAPI",
+        "Maven"
       ]
     }
   ] as ExperienceItem[],
@@ -134,20 +163,20 @@ export const PORTFOLIO_DATA = {
       role: "Backend Developer",
       period: "2026 - Present",
       githubUrl: "https://github.com/Tr-Duy/ProJect-Fullstack-LeLa",
-      description: "English vocabulary learning platform powered by SRS and AI-assisted learning.",
+      description: "English vocabulary learning platform engineered with custom SRS algorithm engine, AI-assisted quiz generation, SePay automated payment webhooks, and real-time WebSocket communication.",
       longDescription: "A comprehensive backend system engineered with Java 21 and Spring Boot for an adaptive English vocabulary platform. Integrates custom Spaced Repetition System (SRS) algorithm engines, AI-generated quiz generation via Google Gemini, real-time WebSocket communication, and payment processing with SePay.",
       highlights: [
         "Developed 170+ REST API mappings using Java, Spring Boot, Spring Data JPA, and MySQL following a layered architecture across 34 JPA entities.",
-        "Implemented the SRS learning engine for flashcards, review scheduling, progress tracking, learning sessions, and spaced-repetition workflows.",
+        "Implemented the SRS learning engine for flashcards, review scheduling, progress tracking, learning sessions, and spaced-repetition algorithms.",
         "Implemented JWT/OAuth2 authentication, role-based authorization, and refresh-token management using Spring Security.",
-        "Integrated Google Gemini AI for AI-generated quizzes and personalized learning features.",
-        "Integrated SePay for payment processing with secure transactional workflows.",
+        "Integrated Google Gemini AI for automated quiz generation and personalized context.",
+        "Integrated SePay webhook for payment processing with secure transactional workflows.",
         "Developed quiz, achievement, leaderboard, notification, subscription, and WebSocket chat modules.",
         "Added 65 test classes and 295+ JUnit test methods.",
-        "Used Flyway for database migration management with 30 migrations."
+        "Managed database evolution using Flyway with 30 migrations."
       ],
       metrics: [
-        { label: "API Mappings", value: "170+" },
+        { label: "REST APIs", value: "170+" },
         { label: "JPA Entities", value: "34" },
         { label: "Test Classes", value: "65" },
         { label: "JUnit Tests", value: "295+" },
@@ -192,15 +221,15 @@ export const PORTFOLIO_DATA = {
       role: "Backend Developer",
       period: "2026",
       githubUrl: "https://github.com/Tr-Duy/YoEdu_Student_Management_System",
-      description: "Student management system built with Java and Spring Boot, providing RESTful APIs for academic management, authentication, enrollment, attendance, learning, billing, payment, and promotion workflows.",
+      description: "Student management backend system built with Java and Spring Boot, providing 90+ RESTful APIs for academic administration, JWT authentication, enrollment, attendance, and billing workflows.",
       longDescription: "Enterprise student management system built with Java 21 and Spring Boot 4. Provides 90+ RESTful API endpoints across 17 JPA entities and 16 business controllers for academic administration, JWT authentication, and transactional financial workflows.",
       highlights: [
         "Developed 90+ RESTful API endpoints using Java 21, Spring Boot 4, Spring Data JPA, and MySQL following a layered architecture.",
-        "Designed and implemented backend modules for students, teachers, classes, enrollments, attendance, learning results, billing, payments, promotions, reporting, and parent-portal workflows.",
+        "Designed and implemented backend modules for students, teachers, classes, enrollments, attendance, learning results, billing, payments, promotions, and parent-portal workflows.",
         "Implemented JWT authentication and role-based authorization for 4 user roles, securing 70+ backend methods with Spring Security.",
-        "Implemented transactional business workflows using @Transactional and BigDecimal.",
+        "Implemented transactional financial workflows using @Transactional and BigDecimal precision.",
         "Implemented pagination, dynamic filtering, standardized API responses, global exception handling, and Swagger/OpenAPI documentation.",
-        "Added 86 JUnit 5/Mockito test methods across 15 service test classes."
+        "Added 86 JUnit 5 / Mockito test methods across 15 service test classes."
       ],
       metrics: [
         { label: "REST APIs", value: "90+" },
@@ -208,7 +237,7 @@ export const PORTFOLIO_DATA = {
         { label: "Controllers", value: "16" },
         { label: "User Roles", value: "4" },
         { label: "Secured Methods", value: "70+" },
-        { label: "Tests", value: "86" }
+        { label: "JUnit Tests", value: "86" }
       ],
       technologies: [
         "Java 21",
@@ -245,79 +274,66 @@ export const PORTFOLIO_DATA = {
 
   skillCategories: [
     {
-      category: "Languages",
-      skills: [
-        { name: "Java", isPrimaryBackend: true },
-        { name: "TypeScript" },
-        { name: "SQL", isPrimaryBackend: true }
-      ]
-    },
-    {
       category: "Backend",
       skills: [
-        { name: "Spring Boot", isPrimaryBackend: true },
-        { name: "Spring Web", isPrimaryBackend: true },
-        { name: "Spring Data JPA", isPrimaryBackend: true },
-        { name: "Hibernate", isPrimaryBackend: true },
-        { name: "RESTful API", isPrimaryBackend: true },
-        { name: "Maven", isPrimaryBackend: true }
-      ]
-    },
-    {
-      category: "Security & Authentication",
-      skills: [
-        { name: "Spring Security", isPrimaryBackend: true },
-        { name: "JWT", isPrimaryBackend: true },
-        { name: "OAuth2", isPrimaryBackend: true }
+        { name: "Java", isPrimary: true },
+        { name: "Spring Boot", isPrimary: true },
+        { name: "Spring Security", isPrimary: true },
+        { name: "JPA / Hibernate", isPrimary: true },
+        { name: "RESTful API", isPrimary: true },
+        { name: "Maven", isPrimary: true }
       ]
     },
     {
       category: "Database",
       skills: [
-        { name: "MySQL", isPrimaryBackend: true },
-        { name: "PostgreSQL", isPrimaryBackend: true },
+        { name: "MySQL", isPrimary: true },
+        { name: "PostgreSQL", isPrimary: true },
         { name: "SQL Server" },
-        { name: "Flyway", isPrimaryBackend: true }
+        { name: "Flyway", isPrimary: true }
       ]
     },
     {
-      category: "Integration",
+      category: "Testing & Quality",
       skills: [
-        { name: "Google Gemini API", isPrimaryBackend: true },
-        { name: "SePay", isPrimaryBackend: true },
-        { name: "WebSocket", isPrimaryBackend: true }
-      ]
-    },
-    {
-      category: "Testing & Tools",
-      skills: [
-        { name: "JUnit 5", isPrimaryBackend: true },
-        { name: "Mockito", isPrimaryBackend: true },
-        { name: "Postman", isPrimaryBackend: true },
-        { name: "Swagger/OpenAPI", isPrimaryBackend: true },
-        { name: "Git" },
-        { name: "GitHub" },
-        { name: "Docker", isPrimaryBackend: true },
-        { name: "Docker Compose", isPrimaryBackend: true }
+        { name: "JUnit 5", isPrimary: true },
+        { name: "Mockito", isPrimary: true }
       ]
     },
     {
       category: "Frontend",
       skills: [
         { name: "ReactJS" },
-        { name: "Vite" },
-        { name: "React Router" },
-        { name: "Tailwind CSS" },
-        { name: "Ant Design" },
-        { name: "TanStack Query" }
+        { name: "TypeScript" },
+        { name: "JavaScript" },
+        { name: "Tailwind CSS" }
+      ]
+    },
+    {
+      category: "Tools & DevOps",
+      skills: [
+        { name: "Git", isPrimary: true },
+        { name: "GitHub", isPrimary: true },
+        { name: "Docker", isPrimary: true },
+        { name: "Postman", isPrimary: true },
+        { name: "Swagger / OpenAPI", isPrimary: true }
+      ]
+    },
+    {
+      category: "Integration & AI",
+      skills: [
+        { name: "Google Gemini API", isPrimary: true },
+        { name: "SePay Webhooks", isPrimary: true },
+        { name: "WebSocket" }
       ]
     }
   ] as SkillCategory[],
 
   education: [
     {
-      institution: "Saigon Technology University - STU",
+      institution: "Saigon Technology University (STU)",
       degree: "Bachelor of Information Technology",
+      status: "Final-year Student (Expected Graduation: 2026)",
       period: "2022 - Present",
       gpa: "3.1 / 4.0",
       awards: [
